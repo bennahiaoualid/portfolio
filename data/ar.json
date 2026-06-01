@@ -1,0 +1,239 @@
+{
+  "meta": {
+    "name": "وليد بن ناهيه",
+    "title": "مطور Full Stack",
+    "subtitle": "متخصص PHP و Laravel",
+    "bio": "مطور Full Stack يركز على الواجهة الخلفية، متخصص في PHP و Laravel مع أكثر من 3 سنوات في بناء تطبيقات ويب حقيقية. أُسلّم أنظمة كاملة من التصميم إلى النشر.",
+    "extended_bio": "حاصل على ماجستير في علوم الحاسوب، وقد أنجزت عدة منصات إنتاجية من الصفر. أقدم تطوير ويب كامل (Laravel, PHP, JavaScript)، تصميم REST API، تحسين MySQL، تكامل الذكاء الاصطناعي، مراجعة الكود، والإرشاد بالعربية والإنجليزية. كود نظيف، تحليل قوي، وتعاون شفاف.",
+    "location": "تقرت، الجزائر",
+    "email": "xxx@example.com",
+    "phone": "+213 xxx xxx xxx",
+    "github": "https://github.com/xxx",
+    "linkedin": "https://linkedin.com/in/xxx"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "projects": "المشاريع",
+    "contact": "تواصل",
+    "lang_toggle": "English",
+    "back_home": "← العودة للرئيسية",
+    "back_projects": "← كل المشاريع",
+    "view_case_study": "عرض دراسة الحالة ←",
+    "view_all_projects": "عرض كل المشاريع",
+    "view_projects": "عرض المشاريع",
+    "github": "GitHub",
+    "contact_me": "تواصل معي",
+    "available": "متاح للعمل"
+  },
+  "sections": {
+    "hero_greeting": "مرحباً، أنا",
+    "skills_label": "المهارات التقنية",
+    "skills_title": "ما أعمل به",
+    "projects_label": "معرض الأعمال",
+    "projects_title": "مشاريع مميزة",
+    "about_label": "نبذة",
+    "about_title": "الخلفية",
+    "education_title": "التعليم",
+    "contact_label": "التواصل",
+    "contact_title": "تواصل معي",
+    "contact_subtext": "سواء احتجت نظام backend، منصة ويب كاملة، أو تطبيقاً مدعوماً بالذكاء الاصطناعي — لنتحدث.",
+    "all_work_label": "كل الأعمال",
+    "all_work_title": "المشاريع",
+    "problem": "01 — المشكلة",
+    "role": "02 — دوري",
+    "architecture": "03 — البنية",
+    "challenges": "04 — التحديات التقنية",
+    "screenshots": "05 — لقطات الشاشة",
+    "features": "الميزات",
+    "lessons": "دروس مستفادة",
+    "tech_stack": "التقنيات",
+    "links": "روابط",
+    "github_repo": "مستودع GitHub ↗",
+    "live_demo": "عرض مباشر ↗",
+    "view_github": "عرض على GitHub ↗",
+    "no_demo": "لا يوجد عرض مباشر"
+  },
+  "skills": [
+    {
+      "category": "Backend",
+      "items": ["PHP", "Laravel", "REST APIs", "MySQL"]
+    },
+    {
+      "category": "Frontend",
+      "items": ["JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "Ajax"]
+    },
+    {
+      "category": "أدوات وممارسات",
+      "items": ["Git", "تصميم قواعد البيانات", "تكامل AI", "مراجعة الكود"]
+    },
+    {
+      "category": "مهارات شخصية",
+      "items": ["عربي وإنجليزي", "إرشاد", "توثيق تقني"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "جامعة قاصدي مرباح .ورقلة الجزائر",
+      "degree": "ماستر في علوم الحاسوب",
+      "years": "2017 — 2022"
+    }
+  ],
+  "contact": {
+    "email_label": "البريد الإلكتروني",
+    "github_label": "GitHub",
+    "linkedin_label": "LinkedIn",
+    "phone_label": "الهاتف المحمول"
+  },
+  "footer": {
+    "copyright": "© 2026 وليد بن ناهيه",
+    "built_with": "Alpine.js · Tailwind · JSON-driven"
+  },
+  "projects": [
+    {
+      "id": "competition",
+      "title": "نظام إدارة المسابقات والاختبارات",
+      "short_description": "منصة full-stack لإدارة مسابقات متعددة المستويات مع أسئلة بالذكاء الاصطناعي، مراجعة المدققين، ونظام عملات للمتنافسين.",
+      "description": "منصة لإدارة المسابقات حيث ينشئ المشرفون مسابقات حسب المواضيع. كل مسابقة مقسمة إلى مستويات بأسئلة يراجعها مدققون أو يولّدها الذكاء الاصطناعي. يتقدم المتنافسون مستوى بمستوى. نظام عملات لشراء أو كسب توليد الأسئلة بالذكاء الاصطناعي. أدوار: مشرف، مدقق، متنافس.",
+      "tags": ["PHP", "Laravel", "JavaScript", "MySQL", "Tailwind CSS"],
+      "thumbnail": "assets/images/projects/competition/cover.png",
+      "links": { "github": "", "demo": "" },
+      "images": [
+        { "file": "assets/images/projects/competition/admin-dashboard.png", "label": "لوحة المشرف" },
+        { "file": "assets/images/projects/competition/competition-list.png", "label": "قائمة المسابقات" },
+        { "file": "assets/images/projects/competition/competition-details.png", "label": "تفاصيل المسابقة" },
+        { "file": "assets/images/projects/competition/coin-system.png", "label": "نظام العملات" }
+      ],
+      "case_study": {
+        "problem": "احتاج المنظمون التعليميون والمؤسسات إلى نظام واحد لإدارة مسابقات الاختبارات بمستويات متدرجة وأسئلة مراقبة الجودة مع دعم اختياري للذكاء الاصطناعي.",
+        "my_role": "مطور full-stack وحيد: Laravel، MySQL، واجهات المستخدم، Tailwind، صلاحيات الأدوار، وتكامل API للذكاء الاصطناعي خلف محفظة عملات.",
+        "architecture": "flowchart TB\n  subgraph Client\n    A[واجهة المتنافس]\n    B[واجهة المشرف/المدقق]\n  end\n  subgraph Laravel\n    C[المصادقة والأدوار]\n    D[خدمة المسابقات]\n    E[مسار الأسئلة]\n    F[محفظة العملات]\n  end\n  subgraph External\n    G[(MySQL)]\n    H[API الذكاء الاصطناعي]\n  end\n  A --> C\n  B --> C\n  C --> D\n  D --> E\n  E --> G\n  E --> H\n  F --> E\n  F --> G",
+        "features": [
+          "مسابقات متعددة المستويات مع فتح تدريجي",
+          "طابور مراجعة للمدققين",
+          "توليد أسئلة بالذكاء الاصطناعي بخصم عملات",
+          "لوحات للمشرف والمدقق والمتنافس",
+          "إعداد المواضيع والمستويات",
+          "شراء وكسب العملات"
+        ],
+        "challenges": [
+          {
+            "title": "التحكم بتكلفة الذكاء الاصطناعي",
+            "description": "حجز العملات في معاملات حتى لا تُخصم عند فشل التوليد."
+          },
+          {
+            "title": "سير عمل المدقق",
+            "description": "حالات pending / approved / rejected مع سجل تدقيق."
+          }
+        ],
+        "screenshots": [],
+        "lessons": [
+          "تعدادات الحالة تقلل أخطاء الواجهة",
+          "نمط المحفظة يفصل الت monetization عن منطق الاختبار",
+          "قوائم الانتظار مفيدة للتوليد الجماعي"
+        ]
+      }
+    },
+    {
+      "id": "news",
+      "title": "تطبيق الأخبار",
+      "short_description": "منصة إخبارية مع لوحة تحكم، محرر مقالات غني، تصنيفات ووسوم، إشراف على التعليقات، وREST API للواجهة العامة.",
+      "description": "منصة إدارة أخبار مع لوحة مشرف وبوابة عامة. صلاحيات المستخدمين، محرر مقالات مع صور وفيديو، تصنيفات ووسوم، إشراف تعليقات. الواجهة العامة تستهلك REST API للقوائم والتفاصيل.",
+      "tags": ["PHP", "Laravel", "JavaScript", "Tailwind CSS"],
+      "thumbnail": "assets/images/projects/news/cover.png",
+      "links": { "github": "", "demo": "" },
+      "images": [
+        { "file": "assets/images/projects/news/admin-dashboard.png", "label": "لوحة التحكم" },
+        { "file": "assets/images/projects/news/article-editor.png", "label": "محرر المقالات" },
+        { "file": "assets/images/projects/news/Roles-Permissions.png", "label": "صلاحيات وأدوار" },
+        { "file": "assets/images/projects/news/category-management.png", "label": "إدارة التصنيفات" },
+        { "file": "assets/images/projects/news/comment-moderation.png", "label": "إشراف التعليقات" },
+        { "file": "assets/images/projects/news/home-page.png", "label": "الصفحة الرئيسية" },
+        { "file": "assets/images/projects/news/public-article-list.png", "label": "قائمة المقالات العامة" },
+        { "file": "assets/images/projects/news/public-article-detail.png", "label": "تفاصيل المقالة العامة" }
+      ],
+      "case_study": {
+        "problem": "فرق التحرير تحتاج تحكماً مركزياً في المقالات والوسائط والتصنيفات والتعليقات مع موقع عام سريع عبر API.",
+        "my_role": "بناء لوحة Laravel، الصلاحيات، محرر المقالات، رفع الوسائط، REST API للواجهة العامة، وواجهات Tailwind.",
+        "architecture": "flowchart LR\n  subgraph Admin\n    A[لوحة التحكم]\n    B[محرر المقالات]\n  end\n  subgraph API\n    C[Laravel REST]\n    D[Sanctum]\n  end\n  subgraph Public\n    E[الواجهة العامة]\n  end\n  subgraph Data\n    F[(MySQL)]\n    G[التخزين]\n  end\n  A --> C\n  B --> C\n  C --> D\n  C --> F\n  B --> G\n  E --> C",
+        "features": [
+          "صلاحيات حسب الدور",
+          "محرر غني مع صورة غلاف وفيديو",
+          "تصنيفات ووسوم",
+          "طابور إشراف التعليقات",
+          "REST API للقوائم والتفاصيل",
+          "مسودة / نشر"
+        ],
+        "challenges": [
+          {
+            "title": "معالجة الوسائط",
+            "description": "مسارات رفع موحدة وصور متجاوبة لسرعة الصفحات."
+          },
+          {
+            "title": "اتساق API",
+            "description": "موارد API وإصدارات مستقرة للعميل العام."
+          },
+          {
+            "title": "سبام التعليقات",
+            "description": "حالات إشراف وحد معدل على التعليقات."
+          }
+        ],
+        "screenshots": [],
+        "lessons": [
+          "فصل مسارات Admin و API مبكراً",
+          "تاريخ الـ slug يمنع الروابط المكسورة",
+          "Eager loading يمنع N+1"
+        ]
+      }
+    },
+    {
+      "id": "clinic",
+      "title": "الخدمات الطبية وبوابة المرضى",
+      "short_description": "منصة صحية full-stack (PHP, HTML5, CSS3, JavaScript) تربط المرضى بالعيادات والصيدليات والمختبرات — مواعيد، ملفات طبية، استفسارات ورسائل.",
+      "description": "منصة صحية full-stack تربط المواطنين بالعيادات والصيدليات والمختبرات الطبية. يبحث المرضى عن مقدمي الرعاية ويحجزون المواعيد أونلاين، ويتابعون ملفاتهم الطبية وحالة الحجز، ويتحققون من توفر الأدوية في الصيدليات القريبة، ويرسلون استفسارات. تدير المؤسسات الصحية ملفاتها وخدماتها وتفاعلات المرضى عبر لوحة تحكم مخصصة، مع تقييمات ومراجعات ومراسلة فورية بين المرضى ومقدمي الخدمة.",
+      "tags": ["تطوير الويب", "PHP", "HTML5", "CSS3", "JavaScript"],
+      "thumbnail": "assets/images/projects/clinic/cover.png",
+      "links": { "github": "", "demo": "" },
+      "images": [
+        { "file": "assets/images/projects/clinic/login-page.png", "label": "تسجيل الدخول" },
+        { "file": "assets/images/projects/clinic/signup-page.png", "label": "تسجيل الحساب" },
+        { "file": "assets/images/projects/clinic/society-list.png", "label": "قائمة المؤسسات الطبية" },
+        { "file": "assets/images/projects/clinic/society-details.png", "label": "تفاصيل المؤسسة الطبية" },
+        { "file": "assets/images/projects/clinic/society-reporting.png", "label": "البلاغات" },
+        { "file": "assets/images/projects/clinic/society-advertisement.png", "label": "الإعلانات" },
+        { "file": "assets/images/projects/clinic/reservation-booking.png", "label": "حجز المواعيد" },
+        { "file": "assets/images/projects/clinic/user-profile.png", "label": "الملف الشخصي" },
+        { "file": "assets/images/projects/clinic/search-page.png", "label": "البحث" }
+      ],
+      "case_study": {
+        "problem": "افتقر المرضى إلى قناة موحدة لاكتشاف مقدمي الرعاية وحجز الزيارات ومتابعة حالة الحجز والملفات الطبية والتحقق من الأدوية في الصيدليات والتواصل مع المؤسسات — بينما احتاجت العيادات والصيدليات والمختبرات لوحة واحدة لإدارة الملفات والتفاعل مع المرضى.",
+        "my_role": "تطوير ويب full-stack: PHP في الخادم وHTML5 وCSS3 وJavaScript في الواجهة — بوابة المريض ولوحة المؤسسة، حجز المواعيد، متابعة الملف الطبي، بحث توفر الأدوية، نماذج الاستفسار، التقييمات والمراسلة مع معالجة PHP في الخلفية.",
+        "architecture": "flowchart TB\n  subgraph Client\n    P[صفحات المريض HTML/CSS/JS]\n    H[لوحة المؤسسة]\n  end\n  subgraph Server\n    PHP[تطبيق PHP]\n    M[معالجات المراسلة]\n    B[منطق الحجز]\n  end\n  subgraph Data\n    DB[(قاعدة البيانات)]\n  end\n  P --> PHP\n  H --> PHP\n  PHP --> B\n  PHP --> M\n  PHP --> DB",
+        "features": [
+          "بحث وتصفح مقدمي الرعاية",
+          "حجز مواعيد أونلاين",
+          "متابعة الملف الطبي وحالة الحجز",
+          "توفر الأدوية في الصيدليات القريبة",
+          "استفسارات المرضى للمؤسسات",
+          "إدارة ملفات وخدمات المؤسسات",
+          "تقييمات ومراجعات ومراسلة المريض–المؤسسة"
+        ],
+        "challenges": [
+          {
+            "title": "وصول متعدد المؤسسات",
+            "description": "فصل مناطق المريض والعيادة والصيدلية والمختبر مع جلسات PHP حسب الدور."
+          },
+          {
+            "title": "تعارض الحجز",
+            "description": "التحقق من المواعيد في PHP لمنع الحجز المزدوج."
+          }
+        ],
+        "screenshots": [],
+        "lessons": [
+          "هيكل include واضح في PHP يسهل صيانة بوابة المريض والإدارة",
+          "JavaScript تدريجي يقلل الاعتماد على أطر ثقيلة في الواجهة",
+          "واجهة المراسلة تحتاج استراتيجية تحديث أو دفع واضحة من البداية"
+        ]
+      }
+    }
+  ]
+}

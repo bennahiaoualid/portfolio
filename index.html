@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oualid Bennahia — Full Stack Developer</title>
+  <meta name="description" content="Backend-focused Full Stack Developer specializing in PHP & Laravel." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            body: ['Lato', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="assets/css/app.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body x-data="portfolio()" x-init="init()" x-cloak>
+
+  <div x-show="loading" class="loading-screen">
+    <span>// loading portfolio…</span>
+  </div>
+
+  <div x-show="error && !loading" class="loading-screen" style="flex-direction:column;gap:1rem;padding:2rem;text-align:center;max-width:36rem">
+    <p x-text="error"></p>
+    <p x-show="location.protocol === 'file:'" style="font-size:.75rem;line-height:1.6;color:var(--muted)">
+      Images work from disk; JSON does not. Preview with <code style="color:var(--mono)">serve.ps1</code> or deploy to GitHub Pages.
+    </p>
+  </div>
+
+  <template x-if="!loading && data">
+    <div>
+
+      <nav class="fixed top-0 left-0 right-0 z-50">
+        <div class="container nav-shell">
+          <button type="button" class="logo-btn" @click="go('home')">
+            <span style="color:var(--muted)">~/</span>oualid
+          </button>
+          <div class="nav-links">
+            <button type="button" class="nav-link" :class="view === 'home' ? 'active' : ''" @click="go('home')" x-text="data.nav.home"></button>
+            <button type="button" class="nav-link" :class="view === 'projects' || view === 'project' ? 'active' : ''" @click="go('projects')" x-text="data.nav.projects"></button>
+            <a class="nav-link" :href="'mailto:' + data.meta.email" x-text="data.nav.contact"></a>
+            <button type="button" class="btn-lang" @click="switchLang()" x-text="data.nav.lang_toggle"></button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- HOME -->
+      <div x-show="view === 'home'" style="padding-top:4rem">
+
+        <section class="grid-bg hero-atm hero-pad">
+          <div class="container">
+            <div class="hero-row">
+              <div class="profile-ring fu">
+                <img src="assets/images/profile.webp" alt="" @error="$el.style.display='none'" />
+              </div>
+              <div style="flex:1; min-width:0">
+                <p class="label fu" style="margin-bottom:.75rem" x-text="data.sections.hero_greeting"></p>
+                <h1 class="display-xl fu1" style="margin-bottom:.6rem" x-text="data.meta.name"></h1>
+                <p class="accent-line fu2" style="margin-bottom:.3rem">
+                  <span x-text="data.meta.title"></span>
+                  <span style="color:var(--muted); font-weight:400"> | </span>
+                  <span x-text="data.meta.subtitle"></span>
+                </p>
+                <p class="fu3" style="max-width:38rem; color:rgba(221,232,245,.75); line-height:1.8; margin-bottom:2.5rem" x-text="data.meta.bio"></p>
+                <div class="fu4" style="display:flex; flex-wrap:wrap; gap:.75rem; margin-bottom:2rem">
+                  <button type="button" class="btn-primary" @click="go('projects')" x-text="data.nav.view_projects"></button>
+                  <a class="btn-ghost" :href="data.meta.github" target="_blank" rel="noopener" x-text="data.nav.github"></a>
+                  <a class="btn-ghost" :href="'mailto:' + data.meta.email" x-text="data.nav.contact_me"></a>
+                </div>
+                <div class="fu5" style="display:flex; flex-wrap:wrap; align-items:center; gap:1rem">
+                  <span style="display:flex; align-items:center; gap:.5rem; font-size:.82rem; color:var(--muted)">
+                    <span class="pulse-dot" style="width:8px;height:8px;border-radius:50%;background:var(--accent)"></span>
+                    <span x-text="data.nav.available"></span>
+                  </span>
+                  <span style="color:var(--border)">|</span>
+                  <span class="mono-sm" x-text="data.meta.location"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="divider section-pad">
+          <div class="container">
+            <p class="label" style="margin-bottom:.5rem" x-text="data.sections.skills_label"></p>
+            <h2 class="display-lg" style="margin-bottom:2.5rem" x-text="data.sections.skills_title"></h2>
+            <div class="grid-skills">
+              <template x-for="sk in data.skills" :key="sk.category">
+                <div class="skill-card">
+                  <p class="display-md" style="font-size:.85rem; margin-bottom:.75rem" x-text="sk.category"></p>
+                  <div style="display:flex; flex-wrap:wrap; gap:.4rem">
+                    <template x-for="item in sk.items" :key="item">
+                      <span class="pill" x-text="item"></span>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </section>
+
+        <section class="divider section-pad">
+          <div class="container">
+            <p class="label" style="margin-bottom:.5rem" x-text="data.sections.projects_label"></p>
+            <h2 class="display-lg" style="margin-bottom:2.5rem" x-text="data.sections.projects_title"></h2>
+            <div class="grid-projects">
+              <template x-for="p in data.projects" :key="p.id">
+                <article class="card" style="cursor:pointer; overflow:hidden" @click="openProject(p.id)">
+                  <div class="thumb" style="border-bottom:1px solid var(--border)">
+                    <img :src="p.thumbnail" :alt="p.title" @error="$event.target.style.opacity='0'" />
+                    <div class="thumb-placeholder">
+                      <span class="mono-sm" style="font-size:2rem; color:var(--border)">&lt;/&gt;</span>
+                    </div>
+                  </div>
+                  <div style="padding:1.25rem">
+                    <h3 class="display-md" style="margin-bottom:.5rem; line-height:1.3" x-text="p.title"></h3>
+                    <p style="font-size:.82rem; color:var(--muted); line-height:1.7; margin-bottom:1rem" x-text="p.short_description"></p>
+                    <div style="display:flex; flex-wrap:wrap; gap:.35rem; margin-bottom:1rem">
+                      <template x-for="tag in p.tags.slice(0, 3)" :key="tag">
+                        <span class="pill" x-text="tag"></span>
+                      </template>
+                    </div>
+                    <span class="mono-xs" x-text="data.nav.view_case_study"></span>
+                  </div>
+                </article>
+              </template>
+            </div>
+            <div style="margin-top:2.5rem; text-align:center">
+              <button type="button" class="btn-ghost" @click="go('projects')" x-text="data.nav.view_all_projects"></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="divider section-pad">
+          <div class="container">
+            <p class="label" style="margin-bottom:.5rem" x-text="data.sections.about_label"></p>
+            <h2 class="display-lg" style="margin-bottom:2.5rem" x-text="data.sections.about_title"></h2>
+            <div class="grid-2">
+              <div>
+                <p style="color:rgba(221,232,245,.78); line-height:1.85; margin-bottom:1rem" x-text="data.meta.bio"></p>
+                <p style="color:var(--muted); font-size:.875rem; line-height:1.85" x-text="data.meta.extended_bio"></p>
+              </div>
+              <div>
+                <h3 class="display-md" style="font-size:.85rem; margin-bottom:1rem" x-text="data.sections.education_title"></h3>
+                <template x-for="edu in data.education" :key="edu.institution">
+                  <div class="card-flat" style="padding:1.1rem; margin-bottom:.75rem">
+                    <p class="display-md" style="font-size:.88rem" x-text="edu.institution"></p>
+                    <p style="font-size:.83rem; color:var(--accent); margin-top:.3rem" x-text="edu.degree"></p>
+                    <p class="mono-sm" style="font-size:.72rem; margin-top:.3rem" x-text="edu.years"></p>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="divider section-pad">
+          <div class="container">
+            <p class="label" style="margin-bottom:.5rem" x-text="data.sections.contact_label"></p>
+            <h2 class="display-lg" style="margin-bottom:.75rem" x-text="data.sections.contact_title"></h2>
+            <p style="color:var(--muted); max-width:36rem; margin-bottom:2rem" x-text="data.sections.contact_subtext"></p>
+            <div style="display:flex; flex-wrap:wrap; gap:.75rem">
+              <a class="contact-chip" :href="'mailto:' + data.meta.email">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent)">@</span>
+                <span class="mono-sm" style="font-size:.75rem" x-text="data.meta.email"></span>
+              </a>
+              <a class="contact-chip" :href="data.meta.github" target="_blank" rel="noopener">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent)">gh</span>
+                <span class="mono-sm" style="font-size:.75rem" x-text="data.contact.github_label"></span>
+              </a>
+              <a class="contact-chip" x-show="data.meta.linkedin" :href="data.meta.linkedin" target="_blank" rel="noopener">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent)">in</span>
+                <span class="mono-sm" style="font-size:.75rem" x-text="data.contact.linkedin_label"></span>
+              </a>
+              <a class="contact-chip" x-show="data.meta.phone" :href="'tel:' + data.meta.phone.replace(/\s/g,'')">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent)">#</span>
+                <span class="mono-sm" style="font-size:.75rem" x-text="data.meta.phone"></span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          <div class="container" style="padding:1.5rem 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem">
+            <span class="mono-sm" style="font-size:.72rem" x-text="data.footer.copyright"></span>
+            <span class="mono-sm" style="font-size:.72rem" x-text="data.footer.built_with"></span>
+          </div>
+        </footer>
+      </div>
+
+      <!-- PROJECTS LIST -->
+      <div x-show="view === 'projects'" style="padding-top:4rem; min-height:100vh">
+        <div class="container" style="padding:3.5rem 0">
+          <button type="button" class="link-back" @click="go('home')" x-text="data.nav.back_home"></button>
+          <p class="label" style="margin-bottom:.5rem" x-text="data.sections.all_work_label"></p>
+          <h2 class="display-lg" style="font-size:2.2rem; margin-bottom:3rem" x-text="data.sections.all_work_title"></h2>
+          <div class="grid-projects-lg">
+            <template x-for="p in data.projects" :key="p.id">
+              <article class="card" style="cursor:pointer; overflow:hidden" @click="openProject(p.id)">
+                <div class="thumb" style="border-bottom:1px solid var(--border)">
+                  <img :src="p.thumbnail" :alt="p.title" @error="$event.target.style.opacity='0'" />
+                  <div class="thumb-placeholder">
+                    <span class="mono-sm" style="font-size:2.2rem; color:var(--border)">&lt;/&gt;</span>
+                  </div>
+                </div>
+                <div style="padding:1.5rem">
+                  <h3 class="display-md" style="font-size:1.05rem; margin-bottom:.5rem" x-text="p.title"></h3>
+                  <p style="font-size:.83rem; color:var(--muted); line-height:1.75; margin-bottom:1.1rem" x-text="p.short_description"></p>
+                  <div style="display:flex; flex-wrap:wrap; gap:.35rem; margin-bottom:1.25rem">
+                    <template x-for="tag in p.tags" :key="tag">
+                      <span class="pill" x-text="tag"></span>
+                    </template>
+                  </div>
+                  <div style="display:flex; align-items:center; justify-content:space-between">
+                    <span class="mono-xs" x-text="data.nav.view_case_study"></span>
+                    <a x-show="p.links?.github" :href="p.links.github" target="_blank" rel="noopener" @click.stop class="mono-sm" style="font-size:.72rem; text-decoration:none">GitHub ↗</a>
+                  </div>
+                </div>
+              </article>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT DETAIL -->
+      <div x-show="view === 'project'" style="padding-top:4rem; min-height:100vh">
+        <template x-if="currentProject">
+          <div>
+            <div style="background:var(--surf2); border-bottom:1px solid var(--border); padding:3rem 0">
+              <div class="container">
+                <button type="button" class="link-back" @click="go('projects')" x-text="data.nav.back_projects"></button>
+                <div style="display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1rem">
+                  <template x-for="tag in currentProject.tags" :key="tag">
+                    <span class="pill" x-text="tag"></span>
+                  </template>
+                </div>
+                <h1 class="display-xl" style="font-size:clamp(1.8rem,4vw,3rem); margin-bottom:.75rem" x-text="currentProject.title"></h1>
+                <p style="color:var(--muted); max-width:42rem; line-height:1.75" x-text="currentProject.short_description"></p>
+                <div style="display:flex; gap:1.5rem; margin-top:1.5rem; flex-wrap:wrap">
+                  <a x-show="currentProject.links?.github" :href="currentProject.links.github" target="_blank" rel="noopener" class="mono-xs" x-text="data.sections.view_github"></a>
+                  <a x-show="currentProject.links?.demo" :href="currentProject.links.demo" target="_blank" rel="noopener" class="mono-xs" x-text="data.sections.live_demo"></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="container" style="padding:3.5rem 0">
+              <div class="case-grid">
+                <div style="display:flex; flex-direction:column; gap:3rem">
+                  <section>
+                    <p class="label" style="margin-bottom:.75rem" x-text="data.sections.problem"></p>
+                    <p style="color:rgba(221,232,245,.8); line-height:1.85" x-text="currentProject.case_study.problem"></p>
+                  </section>
+                  <section style="padding-top:3rem; border-top:1px solid var(--border)">
+                    <p class="label" style="margin-bottom:.75rem" x-text="data.sections.role"></p>
+                    <p style="color:rgba(221,232,245,.8); line-height:1.85" x-text="currentProject.case_study.my_role"></p>
+                  </section>
+                  <section style="padding-top:3rem; border-top:1px solid var(--border)">
+                    <p class="label" style="margin-bottom:.75rem" x-text="data.sections.architecture"></p>
+                    <div class="mermaid-wrap">
+                      <div id="arch-diagram"></div>
+                    </div>
+                  </section>
+                  <section style="padding-top:3rem; border-top:1px solid var(--border)">
+                    <p class="label" style="margin-bottom:1.25rem" x-text="data.sections.challenges"></p>
+                    <div style="display:flex; flex-direction:column; gap:1.25rem">
+                      <template x-for="ch in currentProject.case_study.challenges" :key="ch.title">
+                        <div class="challenge-item">
+                          <p class="display-md" style="font-size:.88rem; margin-bottom:.35rem" x-text="ch.title"></p>
+                          <p style="font-size:.85rem; color:var(--muted); line-height:1.8" x-text="ch.description"></p>
+                        </div>
+                      </template>
+                    </div>
+                  </section>
+                  <section style="padding-top:3rem; border-top:1px solid var(--border)">
+                    <p class="label" style="margin-bottom:1.25rem" x-text="data.sections.screenshots"></p>
+                    <div class="ss-grid">
+                      <template x-for="img in currentProject.images" :key="img.file">
+                        <div>
+                          <div class="ss-card">
+                            <img :src="img.file" :alt="img.label" @error="$event.target.style.opacity='0'" />
+                            <div class="ss-fallback">
+                              <span class="mono-sm" style="font-size:1.5rem; color:var(--border)">[ ]</span>
+                              <span class="mono-sm" style="font-size:.65rem; text-align:center; padding:0 .5rem" x-text="img.label"></span>
+                            </div>
+                          </div>
+                          <p class="mono-sm" style="font-size:.68rem; margin-top:.5rem; text-align:center" x-text="img.label"></p>
+                        </div>
+                      </template>
+                    </div>
+                  </section>
+                </div>
+
+                <aside class="sidebar-sticky" style="display:flex; flex-direction:column; gap:1.25rem">
+                  <div class="card-flat" style="padding:1.25rem">
+                    <p class="label" style="margin-bottom:1rem" x-text="data.sections.features"></p>
+                    <ul style="list-style:none; display:flex; flex-direction:column; gap:.6rem">
+                      <template x-for="f in currentProject.case_study.features" :key="f">
+                        <li style="display:flex; gap:.5rem; font-size:.82rem; color:rgba(221,232,245,.8); line-height:1.6">
+                          <span style="color:var(--accent); flex-shrink:0">›</span>
+                          <span x-text="f"></span>
+                        </li>
+                      </template>
+                    </ul>
+                  </div>
+                  <div class="card-flat" style="padding:1.25rem">
+                    <p class="label" style="margin-bottom:1rem" x-text="data.sections.lessons"></p>
+                    <ul style="list-style:none; display:flex; flex-direction:column; gap:.6rem">
+                      <template x-for="l in currentProject.case_study.lessons" :key="l">
+                        <li style="display:flex; gap:.5rem; font-size:.82rem; color:rgba(221,232,245,.8); line-height:1.6">
+                          <span style="color:var(--accent); flex-shrink:0; font-size:.5rem">●</span>
+                          <span x-text="l"></span>
+                        </li>
+                      </template>
+                    </ul>
+                  </div>
+                  <div class="card-flat" style="padding:1.25rem">
+                    <p class="label" style="margin-bottom:1rem" x-text="data.sections.tech_stack"></p>
+                    <div style="display:flex; flex-wrap:wrap; gap:.4rem">
+                      <template x-for="tag in currentProject.tags" :key="tag">
+                        <span class="pill" x-text="tag"></span>
+                      </template>
+                    </div>
+                  </div>
+                  <div class="card-flat" style="padding:1.25rem">
+                    <p class="label" style="margin-bottom:1rem" x-text="data.sections.links"></p>
+                    <div style="display:flex; flex-direction:column; gap:.6rem">
+                      <a x-show="currentProject.links?.github" :href="currentProject.links.github" target="_blank" rel="noopener" class="mono-xs" x-text="data.sections.github_repo"></a>
+                      <a x-show="currentProject.links?.demo" :href="currentProject.links.demo" target="_blank" rel="noopener" class="mono-xs" x-text="data.sections.live_demo"></a>
+                      <span x-show="!currentProject.links?.demo" class="mono-sm" style="font-size:.72rem" x-text="data.sections.no_demo"></span>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+    </div>
+  </template>
+
+</body>
+</html>

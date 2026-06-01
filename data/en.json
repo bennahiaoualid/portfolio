@@ -1,0 +1,248 @@
+{
+  "meta": {
+    "name": "Oualid Bennahia",
+    "title": "Full Stack Developer",
+    "subtitle": "PHP & Laravel Specialist",
+    "bio": "Backend-focused Full Stack Developer specializing in PHP & Laravel with 3+ years of experience building real-world web applications. I deliver complete systems from architecture to deployment.",
+    "extended_bio": "I hold a Master's degree in Computer Science and have shipped multiple production platforms from scratch. I offer full stack development (Laravel, PHP, JavaScript), REST API design, database optimization (MySQL), AI integration, code review, and mentoring in Arabic and English. Clean code, strong analytics, and transparent collaboration.",
+    "location": "Touggourt, Algeria",
+    "email": "xxx@example.com",
+    "phone": "+213 xxx xxx xxx",
+    "github": "https://github.com/xxx",
+    "linkedin": "https://linkedin.com/in/xxx"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact",
+    "lang_toggle": "العربية",
+    "back_home": "← Back to Home",
+    "back_projects": "← All Projects",
+    "view_case_study": "View Case Study →",
+    "view_all_projects": "View All Projects",
+    "view_projects": "View Projects",
+    "github": "GitHub",
+    "contact_me": "Contact Me",
+    "available": "Available for work"
+  },
+  "sections": {
+    "hero_greeting": "Hello, I'm",
+    "skills_label": "Technical Skills",
+    "skills_title": "What I Work With",
+    "projects_label": "Portfolio",
+    "projects_title": "Featured Projects",
+    "about_label": "About",
+    "about_title": "Background",
+    "education_title": "Education",
+    "contact_label": "Contact",
+    "contact_title": "Get In Touch",
+    "contact_subtext": "Whether you need a backend system, a full web platform, or an AI-powered application — let's talk.",
+    "all_work_label": "All Work",
+    "all_work_title": "Projects",
+    "problem": "01 — Problem",
+    "role": "02 — My Role",
+    "architecture": "03 — Architecture",
+    "challenges": "04 — Technical Challenges",
+    "screenshots": "05 — Screenshots",
+    "features": "Features",
+    "lessons": "Lessons Learned",
+    "tech_stack": "Tech Stack",
+    "links": "Links",
+    "github_repo": "GitHub Repository ↗",
+    "live_demo": "Live Demo ↗",
+    "view_github": "View on GitHub ↗",
+    "no_demo": "No live demo available"
+  },
+  "skills": [
+    {
+      "category": "Backend",
+      "items": ["PHP", "Laravel", "REST APIs", "MySQL"]
+    },
+    {
+      "category": "Frontend",
+      "items": ["JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Bootstrap", "Ajax"]
+    },
+    {
+      "category": "Tools & Practices",
+      "items": ["Git", "Database Design", "AI Integration", "Code Review"]
+    },
+    {
+      "category": "Soft Skills",
+      "items": ["Arabic & English", "Mentoring", "Technical Writing"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Université Kasdi Merbah de Ouargla, Algeria",
+      "degree": "Master of Computer Science (MSCS)",
+      "years": "2020 — 2022"
+    }
+  ],
+  "contact": {
+    "email_label": "Email",
+    "github_label": "GitHub",
+    "linkedin_label": "LinkedIn",
+    "phone_label": "Phone"
+  },
+  "footer": {
+    "copyright": "© 2026 Oualid Bennahia",
+    "built_with": "Alpine.js · Tailwind · JSON-driven"
+  },
+  "projects": [
+    {
+      "id": "competition",
+      "title": "Competition & Quiz Management System",
+      "short_description": "Full-stack platform for admins to run multi-level competitions with AI-generated questions, auditor review, and a coin-based economy for competitors.",
+      "description": "A full-stack competition management platform where admins create and organize competitions across custom topics. Each competition is divided into levels with questions reviewed by auditors or generated via AI. Competitors progress level by level as stages unlock. Users spend coins on AI question generation — earned by winning or purchased. Role management covers admins, auditors, and competitors.",
+      "tags": ["PHP", "Laravel", "JavaScript", "MySQL", "Tailwind CSS"],
+      "thumbnail": "assets/images/projects/competition/cover.png",
+      "links": {
+        "github": "",
+        "demo": ""
+      },
+      "images": [
+        { "file": "assets/images/projects/competition/admin-dashboard.png", "label": "Admin dashboard" },
+        { "file": "assets/images/projects/competition/competition-list.png", "label": "Competition list" },
+        { "file": "assets/images/projects/competition/competition-details.png", "label": "Competition details" },
+        { "file": "assets/images/projects/competition/coin-system.png", "label": "Coin system" }
+      ],
+      "case_study": {
+        "problem": "Educational and corporate organizers needed a single system to run structured quiz competitions with gated levels, quality-controlled questions, and optional AI assistance — without losing oversight from human auditors.",
+        "my_role": "Sole full-stack developer: Laravel backend, MySQL schema, REST-style controllers, Blade/Alpine or JS frontends, Tailwind UI, role-based access (admin, auditor, competitor), and integration of an AI question API behind a coin wallet system.",
+        "architecture": "flowchart TB\n  subgraph Client\n    A[Competitor UI]\n    B[Admin / Auditor UI]\n  end\n  subgraph Laravel\n    C[Auth & Roles]\n    D[Competition Service]\n    E[Question Pipeline]\n    F[Coin Wallet]\n  end\n  subgraph External\n    G[(MySQL)]\n    H[AI Provider API]\n  end\n  A --> C\n  B --> C\n  C --> D\n  D --> E\n  E --> G\n  E --> H\n  F --> E\n  F --> G",
+        "features": [
+          "Multi-level competitions with unlock progression",
+          "Auditor review queue for submitted questions",
+          "AI question generation with coin debit",
+          "Admin, auditor, and competitor dashboards",
+          "Topic and level configuration",
+          "Purchase and earn coin workflows"
+        ],
+        "challenges": [
+          {
+            "title": "AI cost control",
+            "description": "Wrapped AI calls in transactions with coin reservation so failed generations do not drain balances."
+          },
+          {
+            "title": "Auditor workflow",
+            "description": "Designed status transitions (pending → approved/rejected) with audit logs for accountability."
+          }
+        ],
+        "screenshots": [],
+        "lessons": [
+          "Domain enums for competition state reduce frontend bugs",
+          "Wallet pattern isolates monetization from core quiz logic",
+          "Queue workers help for bulk AI generation without blocking HTTP"
+        ]
+      }
+    },
+    {
+      "id": "news",
+      "title": "News Web App",
+      "short_description": "Editorial news platform with admin dashboard, rich article editor, categories/tags, comment moderation, and a public REST API for listings and article pages.",
+      "description": "A full-stack news management platform with an admin dashboard and public portal. Features include role-based user and permissions management, rich text article editor with cover images and video support, category and tag organization, and comment moderation. Public routes consume a REST API for news listings and article detail pages.",
+      "tags": ["PHP", "Laravel", "JavaScript", "Tailwind CSS"],
+      "thumbnail": "assets/images/projects/news/cover.png",
+      "links": {
+        "github": "",
+        "demo": ""
+      },
+      "images": [
+        { "file": "assets/images/projects/news/admin-dashboard.png", "label": "لوحة التحكم" },
+        { "file": "assets/images/projects/news/article-editor.png", "label": "محرر المقالات" },
+        { "file": "assets/images/projects/news/Roles-Permissions.png", "label": "صلاحيات وأدوار" },
+        { "file": "assets/images/projects/news/category-management.png", "label": "إدارة التصنيفات" },
+        { "file": "assets/images/projects/news/comment-moderation.png", "label": "إشراف التعليقات" },
+        { "file": "assets/images/projects/news/home-page.png", "label": "الصفحة الرئيسية" },
+        { "file": "assets/images/projects/news/public-article-list.png", "label": "قائمة المقالات العامة" },
+        { "file": "assets/images/projects/news/public-article-detail.png", "label": "تفاصيل المقالة العامة" }
+      ],
+      "case_study": {
+        "problem": "Editorial teams needed centralized control over articles, media, taxonomy, and reader comments while serving a fast, decoupled public site via API.",
+        "my_role": "Built the Laravel admin panel with Spatie-style permissions, WYSIWYG article workflow, media uploads, REST API resources for the public frontend, and Tailwind-styled dashboards.",
+        "architecture": "flowchart LR\n  subgraph Admin\n    A[Dashboard]\n    B[Article Editor]\n  end\n  subgraph API\n    C[Laravel REST]\n    D[Auth Sanctum]\n  end\n  subgraph Public\n    E[News SPA / Blade]\n  end\n  subgraph Data\n    F[(MySQL)]\n    G[Storage]\n  end\n  A --> C\n  B --> C\n  C --> D\n  C --> F\n  B --> G\n  E --> C",
+        "features": [
+          "Role-based permissions for editorial staff",
+          "Rich text editor with cover image and video embeds",
+          "Categories and tags",
+          "Comment moderation queue",
+          "REST API for public listings and detail",
+          "Draft / publish workflow"
+        ],
+        "challenges": [
+          {
+            "title": "Media handling",
+            "description": "Normalized upload paths and responsive image variants to keep article pages fast."
+          },
+          {
+            "title": "API consistency",
+            "description": "Used API resources and versioning conventions so the public client stays stable as admin features grow."
+          },
+          {
+            "title": "Comment spam",
+            "description": "Added moderation states and rate limiting on public comment endpoints."
+          }
+        ],
+        "screenshots": [],
+        "lessons": [
+          "Separate admin and API route files early",
+          "Slug history prevents broken links after title edits",
+          "Eager-load relationships on list endpoints to avoid N+1"
+        ]
+      }
+    },
+    {
+      "id": "clinic",
+      "title": "Medical Services & Patient Portal",
+      "short_description": "Full-stack healthcare platform (PHP, HTML5, CSS3, JavaScript) connecting patients with clinics, pharmacies, and labs — appointments, medical files, inquiries, and provider messaging.",
+      "description": "A full-stack healthcare platform connecting citizens with clinics, pharmacies, and medical laboratories. Patients can search and browse health providers, book appointments online, track their medical files and reservation status, check drug availability at nearby pharmacies, and send inquiries. Health institutions manage their profiles, services, and patient interactions through a dedicated dashboard. Includes reviews, ratings, and real-time messaging between patients and providers.",
+      "tags": ["Web Development", "PHP", "HTML5", "CSS3", "JavaScript"],
+      "thumbnail": "assets/images/projects/clinic/cover.png",
+      "links": {
+        "github": "",
+        "demo": ""
+      },
+      "images": [
+        { "file": "assets/images/projects/clinic/login-page.png", "label": "Login Page" },
+        { "file": "assets/images/projects/clinic/signup-page.png", "label": "Signup Page" },
+        { "file": "assets/images/projects/clinic/society-list.png", "label": "Society List" },
+        { "file": "assets/images/projects/clinic/society-details.png", "label": "Society Details" },
+        { "file": "assets/images/projects/clinic/society-reporting.png", "label": "Reporting" },
+        { "file": "assets/images/projects/clinic/society-advertisement.png", "label": "Advertisement" },
+        { "file": "assets/images/projects/clinic/reservation-booking.png", "label": "Reservation Booking" },
+        { "file": "assets/images/projects/clinic/user-profile.png", "label": "User Profile" },
+        { "file": "assets/images/projects/clinic/search-page.png", "label": "Search Page" }
+      ],
+      "case_study": {
+        "problem": "Patients lacked a unified way to discover care providers, book visits, follow reservation status, check prescriptions at nearby pharmacies, and contact institutions — while clinics, pharmacies, and labs needed one place to manage profiles and patient interactions.",
+        "my_role": "Full-stack web development with PHP on the server side and HTML5, CSS3, and JavaScript on the client: patient and provider portals, appointment booking, medical file tracking, pharmacy availability search, inquiry forms, reviews/ratings, and messaging UI integrated with PHP backends.",
+        "architecture": "flowchart TB\n  subgraph Client\n    P[Patient Pages HTML/CSS/JS]\n    H[Institution Dashboard]\n  end\n  subgraph Server\n    PHP[PHP Application]\n    M[Messaging Handlers]\n    B[Booking Logic]\n  end\n  subgraph Data\n    DB[(Database)]\n  end\n  P --> PHP\n  H --> PHP\n  PHP --> B\n  PHP --> M\n  PHP --> DB",
+        "features": [
+          "Search and browse health providers",
+          "Online appointment booking",
+          "Medical file and reservation status tracking",
+          "Drug availability at nearby pharmacies",
+          "Patient inquiries to providers",
+          "Institution profiles and service management",
+          "Reviews, ratings, and patient–provider messaging"
+        ],
+        "challenges": [
+          {
+            "title": "Multi-institution access",
+            "description": "Separated patient, clinic, pharmacy, and lab areas with role-based PHP sessions so each institution only sees its own data."
+          },
+          {
+            "title": "Booking conflicts",
+            "description": "Server-side validation and slot checks in PHP to prevent double bookings."
+          }
+        ],
+        "screenshots": [],
+        "lessons": [
+          "Clear PHP include structure keeps patient and admin areas maintainable",
+          "Progressive enhancement with vanilla JavaScript avoids heavy frontend dependencies",
+          "Real-time messaging UI needs a clear refresh or push strategy from the start"
+        ]
+      }
+    }
+  ]
+}
