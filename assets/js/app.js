@@ -7,8 +7,37 @@ function portfolio() {
     lang: 'en',
     data: null,
     currentProject: null,
+    previewIndex: null,
     loading: true,
     error: null,
+
+    get previewImage() {
+      if (this.previewIndex === null || !this.currentProject?.images) return null;
+      return this.currentProject.images[this.previewIndex] || null;
+    },
+
+    openPreview(index) {
+      this.previewIndex = index;
+      document.body.style.overflow = 'hidden';
+    },
+
+    closePreview() {
+      this.previewIndex = null;
+      document.body.style.overflow = '';
+    },
+
+    nextPreview() {
+      if (!this.currentProject?.images?.length) return;
+      this.previewIndex =
+        (this.previewIndex + 1) % this.currentProject.images.length;
+    },
+
+    prevPreview() {
+      if (!this.currentProject?.images?.length) return;
+      this.previewIndex =
+        (this.previewIndex - 1 + this.currentProject.images.length) %
+        this.currentProject.images.length;
+    },
 
     async init() {
       this.lang = I18n.getLang();
@@ -50,6 +79,7 @@ function portfolio() {
     },
 
     handleRoute() {
+      this.closePreview();
       const hash = window.location.hash || '#home';
 
       if (hash.startsWith('#project/')) {

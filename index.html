@@ -357,16 +357,24 @@
                   <section class="border-t border-portfolio-border pt-10 lg:pt-12">
                     <p class="mb-5 font-mono text-[0.68rem] uppercase tracking-widest text-portfolio-accent" x-text="data.sections.screenshots"></p>
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(260px,1fr))]">
-                      <template x-for="img in currentProject.images" :key="img.file">
-                        <div>
-                          <div class="relative aspect-[16/10] overflow-hidden rounded-md border border-portfolio-border bg-portfolio-surf2">
-                            <img class="absolute inset-0 z-[1] h-full w-full object-cover" :src="img.file" :alt="img.label" @error="$event.target.style.opacity='0'" />
+                      <template x-for="(img, idx) in currentProject.images" :key="img.file">
+                        <div class="group cursor-pointer" @click="openPreview(idx)">
+                          <div class="relative aspect-[16/10] overflow-hidden rounded-md border border-portfolio-border bg-portfolio-surf2 transition-all duration-300 group-hover:border-portfolio-accent/60 group-hover:shadow-lg group-hover:shadow-portfolio-accent/5">
+                            <img class="absolute inset-0 z-[1] h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" :src="img.file" :alt="img.label" @error="$event.target.style.opacity='0'" />
                             <div class="absolute inset-0 z-0 flex flex-col items-center justify-center gap-1.5">
                               <span class="font-mono text-2xl text-portfolio-border">[ ]</span>
                               <span class="px-2 text-center font-mono text-[0.65rem] text-portfolio-muted" x-text="img.label"></span>
                             </div>
+                            <div class="absolute inset-0 z-[2] flex items-center justify-center bg-portfolio-bg/50 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 group-hover:opacity-100">
+                              <div class="flex items-center gap-1.5 rounded-full border border-portfolio-accent/40 bg-portfolio-surface/90 px-3 py-1 font-mono text-xs text-portfolio-accent shadow-md">
+                                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                                </svg>
+                                <span>Preview</span>
+                              </div>
+                            </div>
                           </div>
-                          <p class="mt-2 text-center font-mono text-[0.68rem] text-portfolio-muted" x-text="img.label"></p>
+                          <p class="mt-2 text-center font-mono text-[0.68rem] text-portfolio-muted transition-colors group-hover:text-portfolio-accent" x-text="img.label"></p>
                         </div>
                       </template>
                     </div>
@@ -417,6 +425,99 @@
             </div>
           </div>
         </template>
+      </div>
+
+      <!-- FULLSCREEN IMAGE PREVIEW OVERLAY (LIGHTBOX) -->
+      <div
+        x-show="previewImage"
+        x-transition:enter="transition ease-out duration-250"
+        x-transition:enter-start="opacity-0 scale-95"
+        x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-95"
+        class="fixed inset-0 z-[100] flex flex-col justify-between bg-portfolio-bg/95 p-3 sm:p-6 backdrop-blur-md"
+        @keydown.escape.window="closePreview()"
+        @keydown.arrow-left.window="if (previewImage) { prevPreview(); }"
+        @keydown.arrow-right.window="if (previewImage) { nextPreview(); }"
+      >
+        <!-- Modal Top Bar -->
+        <div class="mx-auto flex w-full max-w-7xl items-center justify-between pb-2 z-10">
+          <div class="flex items-center gap-2 font-mono text-xs text-portfolio-muted">
+            <span class="inline-block h-2 w-2 rounded-full bg-portfolio-accent animate-pulse-soft"></span>
+            <span x-text="((previewIndex || 0) + 1) + ' / ' + (currentProject?.images?.length || 0)"></span>
+          </div>
+          <button
+            type="button"
+            class="cursor-pointer rounded-lg border border-portfolio-border bg-portfolio-surface/80 p-2 text-portfolio-muted transition-colors hover:border-portfolio-accent/50 hover:text-portfolio-accent focus:outline-none"
+            @click="closePreview()"
+            aria-label="Close preview"
+          >
+            <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Modal Center Stage: Prev, Image, Next -->
+        <div class="relative mx-auto flex h-full w-full max-w-7xl flex-1 items-center justify-center my-auto min-h-0 py-2" @click.self="closePreview()">
+          <!-- Previous Button -->
+          <button
+            x-show="currentProject?.images?.length > 1"
+            type="button"
+            class="absolute left-1 sm:left-4 z-20 cursor-pointer rounded-full border border-portfolio-border bg-portfolio-surface/90 p-2.5 sm:p-3.5 text-portfolio-text/80 shadow-xl backdrop-blur-sm transition-all hover:border-portfolio-accent hover:text-portfolio-accent hover:scale-110 focus:outline-none"
+            @click.stop="prevPreview()"
+            aria-label="Previous image"
+          >
+            <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <!-- Active Preview Image -->
+          <div class="relative flex max-h-[72vh] max-w-full items-center justify-center p-1 sm:p-2" @click.self="closePreview()">
+            <template x-if="previewImage">
+              <img
+                :src="previewImage.file"
+                :alt="previewImage.label"
+                class="max-h-[72vh] max-w-[85vw] md:max-w-[78vw] object-contain rounded-lg border border-portfolio-border bg-portfolio-surf2 shadow-2xl transition-all"
+              />
+            </template>
+          </div>
+
+          <!-- Next Button -->
+          <button
+            x-show="currentProject?.images?.length > 1"
+            type="button"
+            class="absolute right-1 sm:right-4 z-20 cursor-pointer rounded-full border border-portfolio-border bg-portfolio-surface/90 p-2.5 sm:p-3.5 text-portfolio-text/80 shadow-xl backdrop-blur-sm transition-all hover:border-portfolio-accent hover:text-portfolio-accent hover:scale-110 focus:outline-none"
+            @click.stop="nextPreview()"
+            aria-label="Next image"
+          >
+            <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Modal Bottom Bar: Caption & Thumbnails strip -->
+        <div class="mx-auto flex w-full max-w-4xl flex-col items-center gap-2 pt-2 z-10">
+          <p class="font-display text-sm font-semibold text-portfolio-text text-center px-4" x-text="previewImage?.label"></p>
+          
+          <!-- Thumbnail strip -->
+          <div x-show="currentProject?.images?.length > 1" class="flex max-w-full items-center gap-2 overflow-x-auto px-2 py-1">
+            <template x-for="(img, idx) in currentProject?.images" :key="img.file">
+              <button
+                type="button"
+                class="h-10 w-16 shrink-0 overflow-hidden rounded border transition-all cursor-pointer"
+                :class="previewIndex === idx ? 'border-portfolio-accent ring-2 ring-portfolio-accent/30 scale-105 opacity-100' : 'border-portfolio-border opacity-50 hover:opacity-90 hover:border-portfolio-muted'"
+                @click.stop="openPreview(idx)"
+                :title="img.label"
+              >
+                <img :src="img.file" :alt="img.label" class="h-full w-full object-cover" />
+              </button>
+            </template>
+          </div>
+        </div>
       </div>
 
     </div>
