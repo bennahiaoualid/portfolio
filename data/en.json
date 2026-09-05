@@ -243,6 +243,61 @@
           "Real-time messaging UI needs a clear refresh or push strategy from the start"
         ]
       }
+    },
+    {
+      "id": "school",
+      "title": "School & Academy Management System",
+      "short_description": "Comprehensive academic platform built with Laravel 12 & DDD, featuring multi-guard authentication, a Filament admin panel, and dedicated Blade + Alpine.js portals for teachers and students.",
+      "description": "An enterprise-grade school and academy management system built with Laravel 12 and MySQL. The platform features multi-guard authentication isolating access across three distinct interfaces: an administrative panel built with Filament PHP, and lightweight, responsive portals for teachers and students built with Blade, Alpine.js, and Tailwind CSS. The system covers end-to-end course lifecycles, student enrollment with active group rules, session scheduling with attendance and grade logging, teacher assignments and payroll, double-entry financial ledgering, inventory movements, and activity audit logging.",
+      "tags": ["PHP", "Laravel", "Filament PHP", "Alpine.js", "Blade", "MySQL", "Tailwind CSS"],
+      "thumbnail": "assets/images/projects/school/cover.png",
+      "links": {
+        "github": "",
+        "demo": ""
+      },
+      "images": [
+        { "file": "assets/images/projects/school/admin-dashboard.png", "label": "Admin Dashboard (Filament)" },
+        { "file": "assets/images/projects/school/teacher-portal.png", "label": "Teacher Portal (Blade & Alpine)" },
+        { "file": "assets/images/projects/school/student-portal.png", "label": "Student Portal (Blade & Alpine)" },
+        { "file": "assets/images/projects/school/courses-management.png", "label": "Course Lifecycle & Management" },
+        { "file": "assets/images/projects/school/session-attendance.png", "label": "Session Attendance & Grades" },
+        { "file": "assets/images/projects/school/financial-transactions.png", "label": "Finance & Account Ledger" }
+      ],
+      "case_study": {
+        "problem": "Academies and educational institutions faced operational friction managing administrative control, teacher attendance/grade reporting, and student access in a single unified system without compromising security or cluttering user interfaces.",
+        "my_role": "Full-stack architect & lead developer: Designed multi-guard authentication (`admin`, `teacher`, `student`), implemented Domain-Driven Design (DDD) action services and domain exceptions, developed the Filament admin dashboard, and built standalone, lightweight Blade + Alpine.js portals for teachers and students.",
+        "architecture": "flowchart TB\n  subgraph Portals [User Portals & Guards]\n    A[Admin Panel: Filament / Livewire]\n    B[Teacher Portal: Blade / Alpine.js]\n    C[Student Portal: Blade / Alpine.js]\n  end\n  subgraph Auth [Multi-Guard Auth]\n    G1[Admin Guard: web]\n    G2[Teacher Guard: teacher]\n    G3[Student Guard: student]\n  end\n  subgraph Application [Application Layer / Actions]\n    D[Academics Actions: Courses, Sessions, Attendance]\n    E[Finance Actions: Transactions, Payments]\n    F[Inventory Actions: Movements]\n  end\n  subgraph Domain [Domain Layer]\n    H[Domain Exceptions & Rules]\n    I[DTOs & Domain Enums]\n  end\n  subgraph Data [Data & Auditing]\n    J[(MySQL Database)]\n    K[Spatie Activity Log & Shield RBAC]\n  end\n  A --> G1\n  B --> G2\n  C --> G3\n  G1 --> D\n  G1 --> E\n  G1 --> F\n  G2 --> D\n  G3 --> D\n  D --> H\n  E --> H\n  F --> H\n  D --> J\n  E --> J\n  F --> J\n  A --> K\n  J --> K",
+        "features": [
+          "Multi-guard authentication separating Admin, Teacher, and Student access",
+          "Dedicated Teacher Portal (Blade + Alpine.js) for attendance taking and grade recording",
+          "Dedicated Student Portal (Blade + Alpine.js) for schedule, progress, and fee tracking",
+          "Filament admin panel with granular RBAC (Filament Shield) and audit logging",
+          "Full course lifecycle transitions (Draft, Active, Suspended, Completed, Cancelled)",
+          "Student registration, guardian info, and active group constraints",
+          "Financial ledger with transaction categories and automated student fee sync",
+          "Teacher compensation calculation, inventory tracking, and scheduled maintenance commands"
+        ],
+        "challenges": [
+          {
+            "title": "Multi-guard authentication & role isolation",
+            "description": "Configured separate authentication guards, session drivers, and middleware for admins, teachers, and students to guarantee complete data isolation and route protection."
+          },
+          {
+            "title": "Dual UI architecture (Filament vs Blade/Alpine)",
+            "description": "Combined a high-productivity Filament admin panel for back-office operators with ultra-fast, tailored Blade + Alpine.js portals for mobile-friendly teacher and student experiences, all sharing the same underlying DDD application actions."
+          },
+          {
+            "title": "Strict domain constraints & financial integrity",
+            "description": "Enforced complex academic rules (e.g. single active course per group) and transactional ledger consistency using isolated Application Actions and Domain Exceptions."
+          }
+        ],
+        "screenshots": [],
+        "lessons": [
+          "Separating user contexts via multi-guard auth prevents authorization leaks and keeps portal UIs clean and purpose-built",
+          "Centralizing business logic inside Application Actions allows Filament resources and Blade/Alpine controllers to safely share identical domain logic",
+          "Domain enums and structured exception types streamline localized Arabic/English error messaging across all panels"
+        ]
+      }
     }
   ]
 }
